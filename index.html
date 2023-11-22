@@ -1,0 +1,1637 @@
+<!DOCTYPE html>
+<html> 
+<head>
+	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+     integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+     crossorigin=""/>
+	<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+     integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+     crossorigin=""></script>
+	<style>
+		#map {position: absolute; top: 0; bottom: 0; left: 0; right: 0;}
+		</style>
+</head>
+<body>
+	<div id = "map"></div>
+	<script>
+		var map = L.map('map').setView([35.626213, 25.756867], 4);
+	
+	L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Ocean/World_Ocean_Base/MapServer/tile/{z}/{y}/{x}.png', {
+    	maxZoom: 13,
+    	attribution: 'Tiles &copy; Esri &mdash; Sources: GEBCO, NOAA, CHS, OSU, UNH, CSUMB, National Geographic, DeLorme, NAVTEQ, and Esri'
+	}).addTo(map);
+	
+let IntroAge = L.layerGroup().addTo( map )
+
+let DiscovAge = L.layerGroup().addTo( map )
+
+let PharoAge = L.layerGroup().addTo( map )
+
+let BronzeAge = L.layerGroup().addTo( map )
+
+let ExplorAge = L.layerGroup().addTo( map )
+
+let GoldenAge = L.layerGroup().addTo( map )
+
+let HellAge = L.layerGroup().addTo( map )
+
+let ComingofAge = L.layerGroup().addTo( map )
+
+let RomAge = L.layerGroup().addTo( map )
+
+var someFeatures = [{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "eventName": "Sneferu Tomb",
+        "location": "Funerary Temple, Dahshur",
+        "Lecture": "Age of Pharoahs: The Nile River & Red Sea",
+        "Link": "",
+        "Alt": "https://retrospectjournal.com/2021/04/18/byblos-and-its-relationship-with-egypt/",
+        "Reading": "Jenkins, Nancy. (1980). \"Discovery\". The Boat Beneath the Pyramid: King Cheops' Royal Ship. (pp.47-57). Holt Rinehart Winston. ",
+        "Photo": "https://www.ancient-egypt.org/_Media/palermo-stone_med_hr.png",
+        "Key": "Earliest direct evidence of Egyptians receiving goods by sea (cedar from Byblos)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          31.209167,
+          29.790278
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "eventName": "Khufu boat sealed",
+        "location": "South of Khufu Pyramid",
+        "Lecture": "Age of Pharoahs: The Nile River & Red Sea",
+        "Link": "http://www.gizapyramids.org/static/pdf%20library/jenkins_boat.pdf",
+        "Alt": "",
+        "Reading": "Jenkins, Nancy. (1980). \"Excavation\". The Boat Beneath the Pyramid: King Cheops' Royal Ship.(pp.59-81). Holt Rinehart Winston. ",
+        "Photo": "https://upload.wikimedia.org/wikipedia/commons/5/5a/Giseh_Sonnenbarke_07.jpg",
+        "Key": "Oldest and most complete ancient ship"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          31.13456359,
+          29.97802918
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "eventName": "Sahure Trip to Punt ",
+        "location": "Punt (Sudan/Eritrea)",
+        "Lecture": "Age of Pharoahs: The Nile River & Red Sea",
+        "Link": "https://www.scientificamerican.com/article/mysteries-of-ancient-egypts-sacred-baboons-revealed/",
+        "Alt": "",
+        "Reading": "Ward, Kathryn, & Rodolfo Fattovich. (2014). Mersa/Wadi Gawasis and ancient Egyptian maritime trade in the red sea. Near Eastern Archaeology, 78(1):4-11. ",
+        "Photo": "https://res.cloudinary.com/ducqxvol0/image/upload/c_scale,w_368,h_277/f_auto,q_auto/v1677018557/800px-Berlin_122009_020b.jpg?_i=AA",
+        "Key": "Earliest trip to Punt by Egyptians"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          38.487655,
+          18.070875
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "eventName": "Minoans",
+        "location": "Knossos, Crete, Greece",
+        "Lecture": "Age of Heroes: Bronze Age Eastern Mediterraean",
+        "Link": "",
+        "Alt": "https://sites.rhodes.edu/sackett/greek-natural-world/minoans-and-their-connection-mediterranean",
+        "Reading": "Thucydides (257-256 BC). Histories. (Evelyn Shuckburgh, Trans). Perseus.tufts.edu.",
+        "Photo": "https://i.pinimg.com/originals/63/d9/54/63d95446a337feb5abd0a4f9da64ed6f.jpg",
+        "Key": "Early Greek thalassocracy"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          25.14527501,
+          35.34263916
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "eventName": "Tomb of Meket-Re",
+        "location": "Southern Egypt",
+        "Lecture": "Age of Pharoahs: The Nile River & Red Sea",
+        "Link": "https://www.youtube.com/watch?v=JTxWFTS8LOU",
+        "Alt": "",
+        "Reading": "Jenkins, Nancy. (1980). \"Discovery\". The Boat Beneath the Pyramid: King Cheops' Royal Ship. (pp.47-57). Holt Rinehart Winston. ",
+        "Photo": "https://images.metmuseum.org/CRDImages/eg/original/20.3.5_EGDP011925.jpg",
+        "Key": "Models of fishing, fowling, and spiritual boats"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.59590812,
+          24.74140958
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "eventName": "Akrotiri",
+        "location": "Akrotiri, Greece",
+        "Lecture": "Age of Heroes: Bronze Age Eastern Mediterraean",
+        "Link": "",
+        "Alt": "https://egertronpuck.weebly.com/from-a-crypto-artist/in-depth-analysis-the-flotilla-fresco",
+        "Reading": "Thucydides (257-256 BC). Histories. (Evelyn Shuckburgh, Trans). Perseus.tufts.edu.",
+        "Photo": "https://eclecticlightdotcom.files.wordpress.com/2015/03/flotilladet2roll.jpg",
+        "Key": "Houses frescoes of ceremonial boats"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          25.40383111,
+          36.35295451
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "eventName": "Deir el-Bahari",
+        "location": "Luxor, Egypt",
+        "Lecture": "Age of Pharoahs: The Nile River & Red Sea",
+        "Link": "http://judithweingarten.blogspot.com/2015/11/ancient-history-magazine-1-hatshepsuts.html",
+        "Alt": "",
+        "Reading": "Ward, Kathryn, & Rodolfo Fattovich. (2014). Mersa/Wadi Gawasis and ancient Egyptian maritime trade in the red sea. Near Eastern Archaeology, 78(1):4-11. ",
+        "Photo": "https://res.cloudinary.com/ducqxvol0/image/upload/c_scale,w_648,h_370/f_auto,q_auto/v1677005238/HatschepsutFlottePunt_504192f5.jpg?_i=AA",
+        "Key": "Relief of two obelisks on one barge; and Hatshepsut's trip to Punt"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          31.33345192,
+          29.69968167
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "eventName": "Shipwreck at Uluburun",
+        "location": "Giresun, Turkiye",
+        "Lecture": "Age of Heroes: Bronze Age Eastern Mediterraean",
+        "Link": "",
+        "Alt": "https://nauticalarch.org/projects/uluburun-late-bronze-age-shipwreck-excavation/",
+        "Reading": "Aruz, Joan, Kim Benzel, & Jean Evans (Eds.) (2008). Beyond Babylon: Art, Trade, and Diplomacy in the Second Millennium B.C.. The Metropolitan Museum of Art. ",
+        "Photo": "https://nauticalarch.org/wp-content/uploads/2015/05/Photo-Gallery-Thumbnail.jpg",
+        "Key": "Varied, luxurious cargo with 3-4 merchants in period of exchange"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          29.65043416,
+          36.2465795
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "eventName": "Hesiod on Sailing",
+        "location": "Ascra, central Greece",
+        "Lecture": "Ages at sea: Introductory",
+        "Link": "https://www.perseus.tufts.edu/hopper/text?doc=Perseus%3Atext%3A1999.01.0132%3Acard%3D641",
+        "Alt": "",
+        "Reading": "Hesiod (618-694 BC). Works & Days. (Hugh Evelyn-White, Trans.) Perseus.tufts.edu",
+        "Photo": "https://press.umich.edu/var/site/storage/images/university-of-michigan-press/books/t/theogony-and-works-and-days/9780472069323_cover/916097-1-eng-CA/9780472069323_cover1_rb_fullcover.jpg",
+        "Key": "Advice for sailing the seas (lucrative but dangerous, plus discipline in off-season)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          23.074249,
+          38.327032
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "eventName": "Thucydides",
+        "location": "Sparta, Greece",
+        "Lecture": "Age of Heroes: Bronze Age Eastern Mediterraean",
+        "Link": "https://www.perseus.tufts.edu/hopper/text?doc=Perseus%3Atext%3A1999.01.0247%3Abook%3D1%3Achapter%3D4",
+        "Alt": "",
+        "Reading": "Thucydides (257-256 BC). Histories. (Evelyn Shuckburgh, Trans). Perseus.tufts.edu.",
+        "Photo": "https://images.booksense.com/images/180/250/9798636250180.jpg",
+        "Key": "Account of Minos and the Peloponnessian War"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          22.4233668,
+          37.08423253
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "eventName": "Battle of Eknomos",
+        "location": "off southern Siciliy",
+        "Lecture": "Ages at sea: Introductory",
+        "Link": "https://www.perseus.tufts.edu/hopper/text?doc=Perseus%3Atext%3A1999.01.0234%3Abook%3D1%3Achapter%3D25",
+        "Alt": "",
+        "Reading": "Polybius (257-256 BC). Histories. (Evelyn Shuckburgh, Trans). Perseus.tufts.edu.",
+        "Photo": "https://upload.wikimedia.org/wikipedia/commons/1/13/Polybius_1548.jpg",
+        "Key": "Romans vs Carthagians, ravens vs speed"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.9,
+          37.05
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "eventName": "Synesius Journey to Cyrene",
+        "location": "off Amreya, Egypt",
+        "Lecture": "Ages at sea: Introductory",
+        "Link": "https://www.livius.org/sources/content/synesius/synesius-letter-004/",
+        "Alt": "",
+        "Reading": "Synesius (396 AD). Letter 4. (A. Fitzgerald,Trans.). Livious.org.",
+        "Photo": "https://upload.wikimedia.org/wikipedia/commons/9/9f/Letter_of_Synesius_to_Hypatia_b2.jpg",
+        "Key": "Mixed crew, lacking equipment, economic uncertainty but arrived"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          29.715559,
+          31.13281986
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "eventName": "Shipwreck at Grand Conglou",
+        "location": "Marseille, France",
+        "Lecture": "Ages of Discovery: History of the Discipline",
+        "Link": "https://archive.aramcoworld.com/issue/196406/diggings.in.the.deep.htm",
+        "Alt": "",
+        "Reading": "Matsen, Brad. (2009). \"Il Faut Allr Voir\". Jacques Cousteau: The Sea King. (pp. 121-125). Pantheon Books. ",
+        "Photo": "https://www.engramma.it/eOS/resources/images/143/e_143_calcagno_8_Grand-Congloue-amphoras-Cousteau-Lallemand_HI-RESOL-MITMuseum.jpg",
+        "Key": "First excavation with scuba"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.401428,
+          43.176025
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "eventName": "Shipwreck at Antikythera ",
+        "location": "Antikythira, Greece",
+        "Lecture": "Ages of Discovery: History of the Discipline",
+        "Link": "https://vimeo.com/518734183",
+        "Alt": "",
+        "Reading": "Throckmorton, Peter. (1970). \"The Antikythera Wreck: The Beginning of Marine Archaeology\". Shipwrecks and Archaeology: The Unharvested Sea. (pp.113-152). Little Brown & Company.",
+        "Photo": "https://www.researchgate.net/profile/Alexandros-Tourtas/publication/328998855/figure/fig3/AS:693635167313922@1542386919446/Moving-the-boulders-CNAM_Q320.jpg",
+        "Key": "Scuba-excavating treasure divers; bronze and marble statues!"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          23.29772884,
+          35.88890492
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "eventName": "St.Pauls Journey to Rome",
+        "location": "Jerusalem, Israel",
+        "Lecture": "Ages at sea: Introductory",
+        "Link": "https://www.biblegateway.com/passage/?search=Acts%2027&version=NIV",
+        "Alt": "",
+        "Reading": "The Bible. New International Version, Biblegateway.",
+        "Photo": "https://biblemapper.com/blog/wp-content/uploads/2022/08/PaulsVoyageToRome-1.jpg",
+        "Key": "No passenger ships and no navigation in the dark"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.89201264,
+          32.5035857
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "eventName": "Ship remains at Lake Nemi",
+        "location": "Lake Nemi, Italy",
+        "Lecture": "Ages of Discovery: History of the Discipline",
+        "Link": "",
+        "Alt": "https://rarehistoricalphotos.com/caligula-nemi-ships-1932/",
+        "Reading": "Throckmorton, Peter. (1970). \"The Antikythera Wreck: The Beginning of Marine Archaeology\". Shipwrecks and Archaeology: The Unharvested Sea. (pp.113-152). Little Brown & Company.",
+        "Photo": "https://i0.wp.com/alexandermeddings.com/wp-content/uploads/2020/06/Italians-viewing-antique-Emperor-Caligulas-Nemi-ships-1932-1-Cropped.jpg",
+        "Key": "Oldest aquatic archeology in early modern period (Alberti); later drained by Mussolini"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          12.7025,
+          41.712222
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "eventName": "Shipwreck at Cape Gelidonya",
+        "location": "Cape Gelidonya, Turkiye",
+        "Lecture": "Age of Heroes: Bronze Age Eastern Mediterraean",
+        "Link": "https://www.penn.museum/collections/videos/video/1226",
+        "Alt": "",
+        "Reading": "Bass, George. (2012). \"Cape Gelidonya\". Archaeologist Beneath the Sea: Ancient Ships in Bodrum. (pp.31-51).  Boyut Yayin Grubu. ",
+        "Photo": "https://www.penn.museum/sites/expedition/files/2014/09/copper-ingots-Bass-Cape-Gelidonya.jpg",
+        "Key": "First excavation with archeologists as the divers"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          30.400113,
+          36.197138
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "eventName": "Ugarit",
+        "location": "Ugarit, Syria",
+        "Lecture": "Age of Heroes: Bronze Age Eastern Mediterraean",
+        "Link": "https://www.archaeology.org/issues/430-2107/features/9752-ugarit-bronze-age-archive",
+        "Alt": "",
+        "Reading": "Casson, Lionel. (1991). The Ancient Mariners: Seafarers and Sea Fighters of the Mediterranean in Ancient Times. \"Raiders and Traders\" (pp.44-54). Princton University Press. ",
+        "Photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d1/P1180250_Louvre_Langue_ougaritique_Tablette_poeme_mythologique_AO16641_et_16642_rwk.jpg/640px-P1180250_Louvre_Langue_ougaritique_Tablette_poeme_mythologique_AO16641_et_16642_rwk.jpg",
+        "Key": "Tablets of Cyprian letters warning Ugarit of 20 approaching enemy ships "
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.73685574,
+          35.58977947
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "eventName": "Byblos",
+        "location": "Byblos, Lebannon",
+        "Lecture": "Age of Pharoahs: The Nile River & Red Sea",
+        "Link": "",
+        "Alt": "https://en.wikipedia.org/wiki/Story_of_Wenamun",
+        "Reading": "Casson, Lionel. (1991). The Ancient Mariners: Seafarers and Sea Fighters of the Mediterranean in Ancient Times. \"Raiders and Traders\" (pp.44-54). Princton University Press. ",
+        "Photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/Wenamun-Ende.jpg/1024px-Wenamun-Ende.jpg",
+        "Key": "Wenamun journey (C12 BCE), waited 5 months for wood, Egyptian power wane"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.64725953,
+          34.11980597
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "eventName": "Mersa Gawasis",
+        "location": "Mersa Gawasis",
+        "Lecture": "Age of Pharoahs: The Nile River & Red Sea",
+        "Link": "",
+        "Alt": "https://news.fsu.edu/news/arts-humanities/2009/03/09/maritime-archaeologist-at-helm-of-modern-journey-to-ancient-egyptian-land/",
+        "Reading": "Ward, Kathryn, & Rodolfo Fattovich. (2014). Mersa/Wadi Gawasis and ancient Egyptian maritime trade in the red sea. Near Eastern Archaeology, 78(1):4-11. ",
+        "Photo": "https://www.bu.edu/cas/magazine/fall10/Egypt/gallery/gallery2.jpg",
+        "Key": "Craters marked 'wonderful things of Punt'"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.03413311,
+          26.5551866
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "eventName": "Pylos",
+        "location": "Pylos, Greese",
+        "Lecture": "Age of Heroes: Bronze Age Eastern Mediterraean",
+        "Link": "",
+        "Alt": "https://faculty.uml.edu//ethan_spanier/Teaching/documents/HIST225CP1.2LinearB_000.pdf",
+        "Reading": "Casson, Lionel. (1991). The Ancient Mariners: Seafarers and Sea Fighters of the Mediterranean in Ancient Times. \"Raiders and Traders\" (pp.44-54). Princton University Press. ",
+        "Photo": "https://res.cloudinary.com/ducqxvol0/image/upload/c_scale,w_479,h_639/f_auto,q_auto/v1677004552/DSCF3610-1.jpg?_i=AA",
+        "Key": "Coast Guard Tablets' assign men to crew ships"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          21.69213636,
+          36.91249208
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "eventName": "Medinet Habu",
+        "location": "Al Qarna, Egypt",
+        "Lecture": "Age of Heroes: Bronze Age Eastern Mediterraean",
+        "Link": "https://www.asor.org/anetoday/2016/09/who-sea-peoples/",
+        "Alt": "",
+        "Reading": "Casson, Lionel. (1991). The Ancient Mariners: Seafarers and Sea Fighters of the Mediterranean in Ancient Times. \"Raiders and Traders\" (pp.44-54). Princton University Press. ",
+        "Photo": "https://res.cloudinary.com/ducqxvol0/images/f_auto,q_auto/v1677018516/image_1316e-Sea-Peoples/image_1316e-Sea-Peoples.jpg?_i=AA",
+        "Key": "Earliest evidence of square sail with brails"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          32.60137229,
+          25.71959341
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "eventName": "Tyre",
+        "location": "Tyre, Lebannon",
+        "Lecture": "Age of Pharoahs: The Nile River & Red Sea",
+        "Link": "https://www.livius.org/articles/battle/tyre-332-bce/",
+        "Alt": "",
+        "Reading": "Casson, Lionel. (1991). The Ancient Mariners: Seafarers and Sea Fighters of the Mediterranean in Ancient Times. \"Beyond the pillars of Hercules\" (pp.116-23). Princton University Press. ",
+        "Photo": "https://cdn.britannica.com/03/178003-050-5BED23EA/road-ruins-Lebanon-Tyre.jpg",
+        "Key": "City of the Phoenicians"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.19679933,
+          33.27007296
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "eventName": "Sidon",
+        "location": "Sidon, Lebannon",
+        "Lecture": "Age of Exploration: Phoenicians",
+        "Link": "https://www.metmuseum.org/toah/hd/phoe/hd_phoe.htm",
+        "Alt": "",
+        "Reading": "Casson, Lionel. (1991). The Ancient Mariners: Seafarers and Sea Fighters of the Mediterranean in Ancient Times. \"Beyond the pillars of Hercules\" (pp.116-23). Princton University Press. ",
+        "Photo": "https://cdn.britannica.com/54/117254-050-49427BC3/Crusader-castle-Sidon-Leb.jpg",
+        "Key": "City of the Phoenicians"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.43123343,
+          33.81164526
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "eventName": "Ezion-geber",
+        "location": "Eliat, Israel",
+        "Lecture": "Age of Exploration: Phoenicians",
+        "Link": "https://www.metmuseum.org/toah/hd/phoe/hd_phoe.htm",
+        "Alt": "",
+        "Reading": "Casson, Lionel. (1991). The Ancient Mariners: Seafarers and Sea Fighters of the Mediterranean in Ancient Times. \"Beyond the pillars of Hercules\" (pp.116-23). Princton University Press. ",
+        "Photo": "https://library.biblicalarchaeology.org/sites/default/files/bsba120502500l.jpg",
+        "Key": "Port from which Phoenicians travels to Tarshish (Spain)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.96766319,
+          29.54834344
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "eventName": "Carthage",
+        "location": "Carthage, Tunisia",
+        "Lecture": "Age of Exploration: Phoenicians",
+        "Link": "https://www.metmuseum.org/toah/hd/phoe/hd_phoe.htm",
+        "Alt": "",
+        "Reading": "Casson, Lionel. (1991). The Ancient Mariners: Seafarers and Sea Fighters of the Mediterranean in Ancient Times. \"Beyond the pillars of Hercules\" (pp.116-23). Princton University Press. ",
+        "Photo": "https://imperiumromanum.pl/wp-content/uploads/2017/04/197f7563de2ada452cb9646326c9cb18-1200x900.jpg",
+        "Key": "City of the Phoenicians"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.32512056,
+          36.8471852
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "eventName": "Tharish",
+        "location": "Seville, Spain",
+        "Lecture": "Age of Exploration: Phoenicians",
+        "Link": "https://www.metmuseum.org/toah/hd/phoe/hd_phoe.htm",
+        "Alt": "",
+        "Reading": "Marx, Robert. (1992). In Quest of the Great White Gods: Contacts Between the Old and New World from the Dawn of History. Crown. ",
+        "Photo": "https://www.visit-andalucia.com/article_images/phoenicianspart3/Streets-sm.webp",
+        "Key": "Port to which Phoenicians traveled from Ezion-Geber"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -6.200686645,
+          37.0071286
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "eventName": "Assyrian Palace at Tel Balawat",
+        "location": "Balawat, Iraq",
+        "Lecture": "Age of Exploration: Phoenicians",
+        "Link": "",
+        "Alt": "https://www.metmuseum.org/exhibitions/listings/2014/assyria-to-iberia/blog/posts/phoenician-sailing",
+        "Reading": "Marx, Robert. (1992). In Quest of the Great White Gods: Contacts Between the Old and New World from the Dawn of History. Crown. ",
+        "Photo": "https://www.metmuseum.org/-/media/images/exhibitions/2014/assyria-to-iberia/blog/sailing3.jpg?as=1&mh=170&mw=600&sc_lang=en&hash=D95814873F4D6C90F3CC12619B9B0BC2",
+        "Key": "Bronze bands of 'horsey' Phoenician ships"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          43.40395181,
+          36.23743739
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "eventName": "Assyrian Palace at Khorsabad",
+        "location": "Khorsabad, Iraq",
+        "Lecture": "Age of Exploration: Phoenicians",
+        "Link": "",
+        "Alt": "https://collections.louvre.fr/en/ark:/53355/cl010122712",
+        "Reading": "Marx, Robert. (1992). In Quest of the Great White Gods: Contacts Between the Old and New World from the Dawn of History. Crown. ",
+        "Photo": "https://collections.louvre.fr/media/cache/small/0000000021/0000122712/0000217292_OG.JPG",
+        "Key": "Relief of Phoenician ships loaded with timber"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          43.22833658,
+          36.50920487
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "eventName": "Assyrian Palace at Nineveh",
+        "location": "Mosul, Iraq",
+        "Lecture": "Age of Exploration: Phoenicians",
+        "Link": "",
+        "Alt": "https://www.britishmuseum.org/collection/object/W_1851-0902-30",
+        "Reading": "Marx, Robert. (1992). In Quest of the Great White Gods: Contacts Between the Old and New World from the Dawn of History. Crown. ",
+        "Photo": "https://media.britishmuseum.org/media/Repository/Documents/2014_11/4_22/ff49c58c_f323_4599_82de_a3d90171534e/mid_01115450_001.jpg",
+        "Key": "Earliest evidence of ramming and multi-deck ships"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          43.1523624,
+          36.3600804
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "eventName": "Melkarth Shipwreck",
+        "location": "Alboran Sea",
+        "Lecture": "Age of Exploration: Phoenicians",
+        "Link": "https://archive.nytimes.com/www.nytimes.com/library/national/science/101298sci-shipwreck.html",
+        "Alt": "",
+        "Reading": "Moity, Muriel. (2003). \"The Melkarth wreck\". Master Seafarers: Phoenicians and the Greeks. (pp.56-57). Periplus. ",
+        "Photo": "https://static01.nyt.com/library/national/science/101298sci-shipwreck.1.jpg",
+        "Key": "Archeologists hesistant about commercial ventures"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.107554877,
+          36.34402155
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "eventName": "Ashkelon Shipwrecks",
+        "location": "Ashkelon, Israel",
+        "Lecture": "Age of Exploration: Phoenicians",
+        "Link": "https://archive.nytimes.com/www.nytimes.com/library/national/science/101298sci-shipwreck.html",
+        "Alt": "",
+        "Reading": "Moity, Muriel. (2003). \"The Tanit and Elissa wrecks\". Master Seafarers: Phoenicians and the Greeks. (pp. 34-40). Periplus.",
+        "Photo": "https://res.cloudinary.com/ducqxvol0/image/upload/c_scale,w_550,h_420/f_auto,q_auto/v1677020173/nr-1_ashkelon_photo_10969.jpg?_i=AA",
+        "Key": "\"Tanit\" and \"Elissa\" Phoenician ships out of sight of land"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.1434361,
+          31.44115012
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "eventName": "Bajo de Campana",
+        "location": "Murcia, Spain",
+        "Lecture": "Age of Exploration: Phoenicians",
+        "Link": "https://underwatermalta.org/discover/phoenician-shipwreck/",
+        "Alt": "",
+        "Reading": "Urbanus, Jason. (2016). Masters of the Ancient Mediterranean, Archeology, May/June 2016. Archaeological Institute of America. ",
+        "Photo": "https://m.murciatoday.com/images/articles/7470Bajo%20de%20la%20Campana%20phoenician%20boat%20excavation%20san%20javier%20murcia%2016-08-2010%2022-34-47.JPG",
+        "Key": "Phoenician ship of far-ranging cargo and ready-made symposium"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.7404453049,
+          37.72615083
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "eventName": "Battle of Salamis",
+        "location": "Sarconic Gulf, Greece",
+        "Lecture": "The Golden Age: Classical Athens",
+        "Link": "https://www.imdb.com/video/vi213123353?playlistId=tt0416449&ref_=tt_ov_vi",
+        "Alt": "",
+        "Reading": "Casson, Lionel. (1991). The Ancient Mariners: Seafarers and Sea Fighters of the Mediterranean in Ancient Times. \"The Wooden Walls\" (pp. 81-83). Princton University Press. ",
+        "Photo": "https://cdn.thecollector.com/wp-content/uploads/2023/06/battle-salamis-painting-from-above.jpg?width=1400&quality=55",
+        "Key": "Final naval battle of Persian war, assert Athenian dominance"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          23.56397195,
+          37.9581971
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "eventName": "Corinth",
+        "location": "Isthmia, Greece",
+        "Lecture": "The Golden Age: Classical Athens",
+        "Link": "https://www.youtube.com/watch?v=3GtE0kfWDuU",
+        "Alt": "",
+        "Reading": "Casson, Lionel. (1991). The Ancient Mariners: Seafarers and Sea Fighters of the Mediterranean in Ancient Times. \"The Merchants of Ahtens\" (pp. 97-115). Princton University Press.",
+        "Photo": "https://holylandphotos.files.wordpress.com/2012/05/gspldl23.jpg",
+        "Key": "Major maritime city of classical Greece"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          22.99018048,
+          37.93071762
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "eventName": "Athens",
+        "location": "Athens, Greece",
+        "Lecture": "The Golden Age: Classical Athens",
+        "Link": "",
+        "Alt": "https://www.worldhistory.org/Piraeus/",
+        "Reading": "Casson, Lionel. (1991). The Ancient Mariners: Seafarers and Sea Fighters of the Mediterranean in Ancient Times. \"The Merchants of Ahtens\" (pp. 97-115). Princton University Press.",
+        "Photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/be/SNGCop_039.jpg/640px-SNGCop_039.jpg",
+        "Key": "The center of Athenian imperialism"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          23.73025405,
+          37.99345084
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "eventName": "Tektas Burnu Shipwreck",
+        "location": "Alonnesos, Greece",
+        "Lecture": "The Golden Age: Classical Athens",
+        "Link": "https://www.penn.museum/sites/expedition/greek-lead/",
+        "Alt": "",
+        "Reading": "Carlson, Deborah. (2005). Beneath the Seven Seas (G. Bass, Ed.). \"A Wreck from the Golden Age of Greece: Tektas Burnu, Turkey\" (pp. 64-71). Boyut Yayin Grubu. ",
+        "Photo": "https://nauticalarch.org/wp-content/uploads/2015/06/TEK-028.jpg",
+        "Key": "Modest daily trader on Ionian coast"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          23.91910664,
+          39.15654023
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "eventName": "Alonessos Shipwreck",
+        "location": "Cesme, Turkiye",
+        "Lecture": "The Golden Age: Classical Athens",
+        "Link": "https://www.penn.museum/sites/expedition/greek-lead/",
+        "Alt": "",
+        "Reading": "Hadjidaki, Elpida. (1994). Res Maritimae: Cyprus and the Eastern Mediterranean from Prehistory to Late Antiquity. \"The Classical Shipwreck at Alonnesos\" (pp. 125-134). Scholars Press. ",
+        "Photo": "https://culturestories.gr/wp-content/uploads/2020/07/alonissos-peristera-shipwreck-1.jpg",
+        "Key": "Estimated 120 ton cargo, of predominantly one location (Mende)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          26.36911373,
+          38.212082
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "eventName": "Porticello Shipwreck",
+        "location": "Villa San Giovanni, Italy",
+        "Lecture": "The Golden Age: Classical Athens",
+        "Link": "https://www.penn.museum/sites/expedition/greek-lead/",
+        "Alt": "",
+        "Reading": "https://www.penn.museum/sites/expedition/picking-up-the-pieces/",
+        "Photo": "https://www.researchgate.net/profile/Nicolas-Corfu/publication/349657262/figure/fig7/AS:995857532989440@1614442346002/Bronze-heads-Porticello-wreck.png",
+        "Key": "Earliest evidence of lead patching"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.65360727,
+          38.24145493
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "eventName": "Eurythrae ",
+        "location": "Cesme, Turkey",
+        "Lecture": "The Golden Age: Classical Athens",
+        "Link": "https://www.penn.museum/sites/expedition/greek-lead/",
+        "Alt": "",
+        "Reading": "Carlson, Deborah. (2005). Beneath the Seven Seas (G. Bass, Ed.). \"A Wreck from the Golden Age of Greece: Tektas Burnu, Turkey\" (pp. 64-71). Boyut Yayin Grubu. ",
+        "Photo": "https://media.cheggcdn.com/media/dda/ddaa19a4-7dd4-4688-85cd-70d3d5c39aee/10_tektas_burnu_407-150CA8DC12A5DE862D5.jpg",
+        "Key": "Source of Amphorae (Tektas Burnu stamped)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          26.45664778,
+          38.52090852
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "eventName": "Peparethos ",
+        "location": "Skopelos, Greece",
+        "Lecture": "The Golden Age: Classical Athens",
+        "Link": "https://www.penn.museum/sites/expedition/greek-lead/",
+        "Alt": "",
+        "Reading": "Hadjidaki, Elpida. (1994). Res Maritimae: Cyprus and the Eastern Mediterranean from Prehistory to Late Antiquity. \"The Classical Shipwreck at Alonnesos\" (pp. 125-134). Scholars Press. ",
+        "Photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3c/Alonnisos_Peparethos_Amphora.jpg/220px-Alonnisos_Peparethos_Amphora.jpg",
+        "Key": "Source of Amphorae (wine)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          23.69104104,
+          39.13748578
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "eventName": "Mende",
+        "location": "Kalandra, Greece",
+        "Lecture": "The Golden Age: Classical Athens",
+        "Link": "https://www.penn.museum/sites/expedition/greek-lead/",
+        "Alt": "",
+        "Reading": "Hadjidaki, Elpida. (1994). Res Maritimae: Cyprus and the Eastern Mediterranean from Prehistory to Late Antiquity. \"The Classical Shipwreck at Alonnesos\" (pp. 125-134). Scholars Press. ",
+        "Photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Alonnisos_Mendean_Amphora.jpg/220px-Alonnisos_Mendean_Amphora.jpg",
+        "Key": "Source of Amphorae (wine)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          23.42222638,
+          39.96401964
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "eventName": "Laurion ",
+        "location": "Laurium, Greece",
+        "Lecture": "The Golden Age: Classical Athens",
+        "Link": "https://www.penn.museum/sites/expedition/greek-lead/",
+        "Alt": "",
+        "Reading": "https://www.penn.museum/sites/expedition/picking-up-the-pieces/",
+        "Photo": "https://static.cambridge.org/binary/version/id/urn:cambridge.org:id:binary:20221031083050981-0503:S1461957122000249:S1461957122000249_fig8.png?pub-status=live",
+        "Key": "Mine of lead"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          24.05409002,
+          37.71724628
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "eventName": "Kyrenia Shipwreck",
+        "location": "Girne, North Cyprus",
+        "Lecture": "The Golden Age: Classical Athens",
+        "Link": "https://www.youtube.com/watch?v=DjjhVt5NJg0",
+        "Alt": "",
+        "Reading": "Katzev, Susan.(2005). Beneath the Seven Seas (G. Bass, Ed.). \"Resurrrecting an Ancient Greek Ship: Kyrenia, Cyprus\" (pp. 72-79). Boyut Yayin Grubu. ",
+        "Photo": "https://upload.wikimedia.org/wikipedia/commons/6/65/Kyrenia_ship.jpg",
+        "Key": "Pirate-attacked trading vessel; 6000 wood fragment reconstruction"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          33.32154673,
+          35.3443704
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "eventName": "Battle of Patras (Naupactus I)",
+        "location": "Gulf of Patras, Greece",
+        "Lecture": "The Golden Age: Classical Athens",
+        "Link": "http://www.perseus.tufts.edu/hopper/text?doc=Thuc.+2.84.3&fromdoc=Perseus%3Atext%3A1999.01.0247",
+        "Alt": "",
+        "Reading": "Hale, John. (2009). Lords of the Sea: The Epic Story of Athenian Navy and the Birth of Democracy. \"Fortune Favors the Brave\" (pp.154-170). Viking. ",
+        "Photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f6/Rhium.svg/220px-Rhium.svg.png",
+        "Key": "Athenian's clever kyklos strategy against Peloponnesians"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          21.77628163,
+          38.30915876
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "eventName": "Battle of Naupactus (II)",
+        "location": "Gulf of Corinth, Greece",
+        "Lecture": "The Golden Age: Classical Athens",
+        "Link": "http://www.perseus.tufts.edu/hopper/text?doc=Thuc.+2.91&fromdoc=Perseus%3Atext%3A1999.01.0247",
+        "Alt": "",
+        "Reading": "Hale, John. (2009). Lords of the Sea: The Epic Story of Athenian Navy and the Birth of Democracy. \"Fortune Favors the Brave\" (pp.154-170). Viking. ",
+        "Photo": "https://www.worldhistory.org/img/r/p/750x750/1212.png?v=1696566663",
+        "Key": "Athenian's surprise ram Peloponnesians from behind merchant vessel"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          21.83076275,
+          38.39402763
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "eventName": "Battle of Gulf of Corinth",
+        "location": "Gulf of Corinth, Greece",
+        "Lecture": "The Golden Age: Classical Athens",
+        "Link": "http://www.perseus.tufts.edu/hopper/text?doc=Thuc.+7.34.5&fromdoc=Perseus%3Atext%3A1999.01.0247",
+        "Alt": "",
+        "Reading": "Hale, John. (2009). Lords of the Sea: The Epic Story of Athenian Navy and the Birth of Democracy. \"Fortune Favors the Brave\" (pp.154-170). Viking. ",
+        "Photo": "https://i.pinimg.com/600x/e7/c7/08/e7c7084b240fcc13cd3676c926242708.jpg",
+        "Key": "Corinthians reinforce prow, damaging Athenians"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          22.51786318,
+          38.2355631
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "eventName": "Battle of Syracuse",
+        "location": "Syracuse, Italy",
+        "Lecture": "The Golden Age: Classical Athens",
+        "Link": "http://www.perseus.tufts.edu/hopper/text?doc=Thuc.+7.65&fromdoc=Perseus%3Atext%3A1999.01.0200",
+        "Alt": "",
+        "Reading": "Hale, John. (2009). Lords of the Sea: The Epic Story of Athenian Navy and the Birth of Democracy. \"Fortune Favors the Brave\" (pp.154-170). Viking. ",
+        "Photo": "https://2.bp.blogspot.com/--lCWO-u7eyA/VVqvNCZ4G-I/AAAAAAAAyiw/QINjyD8-cP8/s1600/the-peloponnesian-war-syracuse-naval-battle.jpg",
+        "Key": "Syracusans cover foredeck with hides, thwart Athenian grappling"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.307158,
+          37.0852635
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "eventName": "Battle of Aegospotami",
+        "location": "Dardanelles Strait, Turkiye",
+        "Lecture": "The Golden Age: Classical Athens",
+        "Link": "http://www.perseus.tufts.edu/hopper/text?doc=Xen.%20Hell.%202.2&lang=original",
+        "Alt": "",
+        "Reading": "Hale, John. (2009). Lords of the Sea: The Epic Story of Athenian Navy and the Birth of Democracy. \"Fortune Favors the Brave\" (pp.154-170). Viking. ",
+        "Photo": "https://qph.cf2.quoracdn.net/main-qimg-d835bde49da1aa6f69c879e8c4eafb0d-lq",
+        "Key": "Athenians falsely secure at distant market lead Peloponnesians to attack"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          26.5471129,
+          40.25277558
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "eventName": "Trireme Reconstruction under Napoleon",
+        "location": "Paris, France",
+        "Lecture": "The Golden Age: Classical Athens",
+        "Link": "https://www.youtube.com/watch?v=aFJZePD9bo0",
+        "Alt": "",
+        "Reading": "Hale, John. (2009). Lords of the Sea: The Epic Story of Athenian Navy and the Birth of Democracy. \"Building the Fleet\" (pp.15-28). Viking. ",
+        "Photo": "https://upload.wikimedia.org/wikipedia/commons/3/31/Trireme_of_Napoleon_III_under_construction%2C_side_view_%28cropped%29.jpg",
+        "Key": "Early experimental archeology, sailed (and failed) on river Seine "
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.330719356,
+          48.86008983
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "eventName": "Lindos Relief",
+        "location": "Rhodes, Greece",
+        "Lecture": "The Golden Age: Classical Athens",
+        "Link": "https://www.youtube.com/watch?v=aFJZePD9bo0",
+        "Alt": "",
+        "Reading": "Hale, John. (2009). Lords of the Sea: The Epic Story of Athenian Navy and the Birth of Democracy. \"Building the Fleet\" (pp.15-28). Viking. ",
+        "Photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/Lindos_Rhodian_trireme_relief.jpg/1200px-Lindos_Rhodian_trireme_relief.jpg",
+        "Key": "Rare relief of a galley stern"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          28.08864421,
+          36.09213534
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "eventName": "Olympias",
+        "location": "Palaio Faliro, Greece",
+        "Lecture": "The Golden Age: Classical Athens",
+        "Link": "https://www.youtube.com/watch?v=ZcsrNrRkQis",
+        "Alt": "",
+        "Reading": "https://www.youtube.com/watch?v=9XmUYtrWQIE",
+        "Photo": "https://www.ww2wrecks.com/wp-content/uploads/2016/12/OLYMPIAS.jpg",
+        "Key": "Successful reconstruction of triere"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          23.68448035,
+          37.94024001
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "eventName": "Ptolemy IV Philopater's '40'",
+        "location": "Karmouz, Egypt",
+        "Lecture": "Age of Extravaganza: Hellenistic Era",
+        "Link": "http://penelope.uchicago.edu/Thayer/E/Roman/Texts/Athenaeus/5C*.html",
+        "Alt": "",
+        "Reading": "Casson, Lionel. (1991). The Ancient Mariners: Seafarers and Sea Fighters of the Mediterranean in Ancient Times. \"The Age of Titans\" (pp. 127-42). Princton University Press.",
+        "Photo": "https://images.squarespace-cdn.com/content/v1/6047d405b02148755fb6e601/1644791198535-28UUYGGRH652P58AZL8O/271531436_5148898618478017_1425366506829475448_n.jpg?format=750w",
+        "Key": "Supergalley with 4000 rowers and 7 rams"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          29.89680843,
+          31.18482665
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "eventName": "Hieron's Syracusa",
+        "location": "off Syracuse, Italy",
+        "Lecture": "Age of Extravaganza: Hellenistic Era",
+        "Link": "http://penelope.uchicago.edu/Thayer/E/Roman/Texts/Athenaeus/5C*.html",
+        "Alt": "",
+        "Reading": "Casson, Lionel. (1991). The Ancient Mariners: Seafarers and Sea Fighters of the Mediterranean in Ancient Times. \"The Age of Titans\" (pp. 127-42). Princton University Press.",
+        "Photo": "https://upload.wikimedia.org/wikipedia/commons/4/4f/Depiction_of_Syracosia_by_N_Witsen.jpg",
+        "Key": "Opulent grainboat (90000 bushels) with Archiemede's screwpump"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.40129745,
+          36.7964138
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "eventName": "Augustus' Victory Monument ",
+        "location": "Nicopolis, Greece",
+        "Lecture": "Age of Extravaganza: Hellenistic Era",
+        "Link": "https://www.ascsa.edu.gr/News/newsDetails/videocast-william-murray-the-age-of-titans-great-ships-of-the-hellenistic-m",
+        "Alt": "",
+        "Reading": "Murray, W. (2012, Oct 22). The Age of Titans: Great Ships of the Hellenistic Monarchs [Lecture recording]. American School of Classical Studies at Athens. https://www.ascsa.edu.gr/News/newsDetails/videocast-william-murray-the-age-of-titans-great-ships-of-the-hellenistic-m.",
+        "Photo": "https://www-personal.umich.edu/~jmharrin/ASCSA/trip-3/Actium-monument.jpg",
+        "Key": "Ram mounts allow 3D model of siege-ready supergalley rams"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          20.73556244,
+          39.027959
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "eventName": "Battle of Mylai",
+        "location": "Milazzo ME, Italy",
+        "Lecture": "Coming of Age: Rome Becomes a/the Sea Power",
+        "Link": "http://penelope.uchicago.edu/Thayer/E/Roman/Texts/Polybius/1*.html",
+        "Alt": "",
+        "Reading": "Casson, Lionel. (1991). The Ancient Mariners: Seafarers and Sea Fighters of the Mediterranean in Ancient Times. \"Landlubbers to Sea Lords\" (pp. 143-152). Princton University Press.",
+        "Photo": "https://upload.wikimedia.org/wikipedia/commons/c/cc/The_story_of_the_greatest_nations%2C_from_the_dawn_of_history_to_the_twentieth_century_-_a_comprehensive_history%2C_founded_upon_the_leading_authorities%2C_including_a_complete_chronology_of_the_world%2C_and_%2814578958927%29.jpg",
+        "Key": "First Roman victory at sea, makeshift land battle"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.18098356,
+          38.52151253
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "eventName": "Calamity at Kamarina",
+        "location": "Ragusa, Italy",
+        "Lecture": "Coming of Age: Rome Becomes a/the Sea Power",
+        "Link": "http://penelope.uchicago.edu/Thayer/E/Roman/Texts/Polybius/1*.html",
+        "Alt": "",
+        "Reading": "Casson, Lionel. (1991). The Ancient Mariners: Seafarers and Sea Fighters of the Mediterranean in Ancient Times. \"Landlubbers to Sea Lords\" (pp. 143-152). Princton University Press.",
+        "Photo": "https://i.pinimg.com/600x/ed/3f/29/ed3f2926b202b1bf0393b95ce948f491.jpg",
+        "Key": "Post-victory in Carthage, all but 80 of 364 ship fleet sunk in storm"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4520409,
+          36.90289083
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "eventName": "Marsala warship",
+        "location": "Marsala, Italy",
+        "Lecture": "Coming of Age: Rome Becomes a/the Sea Power",
+        "Link": "https://archive.aramcoworld.com/issue/198606/the.punic.warship.htm",
+        "Alt": "",
+        "Reading": "Curry, Andrew. (2012, January/February). The Weapon That Changed History. Archaeology, 65(1), 32-37.",
+        "Photo": "https://upload.wikimedia.org/wikipedia/commons/5/59/Punic.keel.JPG",
+        "Key": "Certainly a punic ship of c. 250 BC, but prefab, spray-deflected warship? uncertain"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          12.426383,
+          37.80169002
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "eventName": "Caesar Captured!",
+        "location": "Alanya, Turkiye",
+        "Lecture": "Coming of Age: Rome Becomes a/the Sea Power",
+        "Link": "https://www.livius.org/sources/content/plutarch/plutarchs-caesar/caesar-and-the-pirates/",
+        "Alt": "",
+        "Reading": "Page, Courtney, and Charles Ewen. (2016). Pieces of Eight: More Archaeology of Piracy (C. Ewen and R. Skowronek, Ed.). \"Recognizing a Pirate Shipwreck without the Skull and Crossbones\" (pp. 2601-273). University Press of Florida.",
+        "Photo": "https://upload.wikimedia.org/wikipedia/commons/4/4f/M443922_Julius-Caesar-taken-prisoner-by-Cilician-pirates-while-crossing-the-Aegean-Sea-c75-BC.jpg",
+        "Key": "Caesar captured by Cicilian pirates, plays their games, wrote them poems, and had them crucified"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          31.98883606,
+          36.54442657
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "eventName": "Cape Rascolmo shipwreck",
+        "location": "Messina, Italy",
+        "Lecture": "Coming of Age: Rome Becomes a/the Sea Power",
+        "Link": "https://en.wikipedia.org/wiki/Pompey#Campaign_against_the_pirates",
+        "Alt": "",
+        "Reading": "Page, Courtney, and Charles Ewen. (2016). Pieces of Eight: More Archaeology of Piracy (C. Ewen and R. Skowronek, Ed.). \"Recognizing a Pirate Shipwreck without the Skull and Crossbones\" (pp. 2601-273). University Press of Florida.",
+        "Photo": "https://upload.wikimedia.org/wikipedia/commons/9/9e/Pompejus_modified.png",
+        "Key": "No cargo and burnt hull? A pirate ship under Sextus in the Battle of Naulochus?"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.51740508,
+          38.30735689
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "eventName": "Battle of Actium",
+        "location": "Preveza, Greece",
+        "Lecture": "Coming of Age: Rome Becomes a/the Sea Power",
+        "Link": "https://www.youtube.com/watch?v=EaAEHFeWads",
+        "Alt": "",
+        "Reading": "https://www.csun.edu/~hcfll004/paplet1.htm",
+        "Photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Castro_Battle_of_Actium.jpg/1024px-Castro_Battle_of_Actium.jpg",
+        "Key": "Octavian vs Mark Antony and Cleopatra, the last great battle of the big ships"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          20.73792435,
+          38.93631339
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "eventName": "Portus Cosanus",
+        "location": "Ortbetello, Italy",
+        "Lecture": "Age of Big Business: Roman Empire",
+        "Link": "http://www.cosaexcavations.org/welcome",
+        "Alt": "",
+        "Reading": "McCann, Anna. (March 1988). The Roman Port of Cosa. Scientific American, 258(3):102-109.",
+        "Photo": "https://images.adsttc.com/media/images/595d/2b41/b22e/3853/7c00/000d/large_jpg/1Jackson_PCO2003.40_JPOleson.jpg?1499278137",
+        "Key": "Earliest surviving datable example of pozzolana concreted in an inundated structure! "
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          11.29264,
+          42.40505596
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "eventName": "Sebastos (Caesarea Maritima)",
+        "location": "Caesarea, Israel",
+        "Lecture": "Age of Big Business: Roman Empire",
+        "Link": "http://www.perseus.tufts.edu/hopper/text?doc=Perseus%3Atext%3A1999.02.0073%3Abook%3D5%3Achapter%3D12%3Asection%3D1",
+        "Alt": "",
+        "Reading": "Swaminathan, Nikhil. (March/April 204). Built to Last: How Roman harbors have stood the test of time. Archaeology, 67(2):44-47.",
+        "Photo": "https://www.ancientportsantiques.com/wp-content/uploads/2021/11/CaesareaAerialPhoto-Hohlfelder2005.jpg",
+        "Key": "Port refounded under Herod, different mole construction throughout"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.89141532,
+          32.50196642
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "eventName": "Claudius' & Trajan's Portus",
+        "location": "Fiumicino, Italy",
+        "Lecture": "Age of Big Business: Roman Empire",
+        "Link": "https://archive.archaeology.org/0903/abstracts/monte_testaccio.html",
+        "Alt": "",
+        "Reading": "Casson, Lionel. (1991). The Ancient Mariners: Seafarers and Sea Fighters of the Mediterranean in Ancient Times. \"All routes lead to Rome\" (pp. 198-212). Princton University Press.",
+        "Photo": "https://www.romanports.org/images/Portus/Traian-port.jpg",
+        "Key": "Sea-side solution to Rome's food demands, c.15-17 ships per day"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          12.25904292,
+          41.77925602
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "eventName": "Mahdia Shipwreck",
+        "location": "Mahdia, Tunisia",
+        "Lecture": "Age of Big Business: Roman Empire",
+        "Link": "",
+        "Alt": "https://archeologie.culture.gouv.fr/archeo-sous-marine/en/heavy-gear-and-mahdia-shipwreck",
+        "Reading": "Hockmann, Olaf. (1997). Encyclopedia of Underwater and Maritime Archeology (J.P. Delgado, Ed.). \"Mahdia Wreck\" (pp. 254-255). Yale University Press.",
+        "Photo": "https://mass.cultureelerfgoed.nl/photos/l/00000312.jpg",
+        "Key": "marble architecture, bronze furnitues, statues! (Rome took all kinds)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          11.12440108,
+          35.53225832
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "eventName": "Arles Rhone riverboat wreck",
+        "location": "Arles, France",
+        "Lecture": "Age of Big Business: Roman Empire",
+        "Link": "",
+        "Alt": "https://archeologie.culture.gouv.fr/archeo-sous-marine/en/raised-water-port-vendres-1-and-arles-rhone-3",
+        "Reading": "Fontaine, Souen. (2014) \"Maritime Roman Glass Trade: An Archaeological Case Study of Arles Harbor (France)\". Journal of Glass Studies, 56: 57-364. Corning Museum of Glass.",
+        "Photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Mus%C3%A9e_de_l%27Arles_antique%2C_Arles%2C_France_%2816194233455%29.jpg/800px-Mus%C3%A9e_de_l%27Arles_antique%2C_Arles%2C_France_%2816194233455%29.jpg",
+        "Key": "1000+ glass vessels; cheap, easy production changed the world"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.620773723,
+          43.6777914
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "eventName": "Cap Corse 2 shipwreck",
+        "location": "Riviera Ligure di Levante",
+        "Lecture": "Age of Big Business: Roman Empire",
+        "Link": "",
+        "Alt": "https://divers24.com/capo-corso-2-ancient-roman-shipwreck/",
+        "Reading": "Fontaine, Souen, & Cibecchini, Franca. (2014) \"An Exceptional Example of Maritime Glass Tade: The Deep Wreck Cap Corse 2 (France, Corsica)\". Journal of Glass Studies, 56: 354-357. Corning Museum of Glass.",
+        "Photo": "https://m8j2c3a9.rocketcdn.me/wp-content/uploads/2023/07/Glass-artefacts-on-the-display.jpg.webp",
+        "Key": "angular glassware evidence local trade in S Gaul "
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.936289,
+          42.92428342
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "eventName": "Cape Passero shipwreck",
+        "location": "Portapalo di Capo Passero, Italy",
+        "Lecture": "Age of Big Business: Roman Empire",
+        "Link": "https://phys.org/news/2013-11-controversy-roman-ingots-dark-neutrinos.html",
+        "Alt": "",
+        "Reading": "Tisseyre, Philippe, et al. (2008). \"The Lead Ingots of Capo Passero: Rhoman Global Mediterranaen Trade\". Oxford Jounral Archaeology, 27(3): 315-323. Oxford Press. ",
+        "Photo": "https://onlinelibrary.wiley.com/cms/asset/64266889-c795-4cf2-8ad6-3273266116e0/ojoa_310_f1.gif",
+        "Key": "Pb ingots with stamps of Sierra Mountains "
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.182079,
+          36.68092529
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "eventName": "Mal di Ventrre shipwreck",
+        "location": "Cabras, Italy",
+        "Lecture": "Age of Big Business: Roman Empire",
+        "Link": "https://phys.org/news/2013-11-controversy-roman-ingots-dark-neutrinos.html",
+        "Alt": "",
+        "Reading": "https://www.museocabras.it/en/the-exposure/mal-ventre/",
+        "Photo": "https://www.museocabras.it/wp-content/uploads/2014/11/museo-civico-giovanni-marongiu-sala-mal-di-ventre-2682--410x273.jpg",
+        "Key": "standardized Pb ingots with 10+ diff stamps of Sierra Mnt"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.30755,
+          39.97313
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "eventName": "Fiumicino 5 boat",
+        "location": "Fiumicino RM, Italy",
+        "Lecture": "Age of Big Business: Roman Empire",
+        "Link": "https://www.cnrs.fr/en/press/3d-reconstructions-boats-ancient-port-rome",
+        "Alt": "",
+        "Reading": "Boetto, Giulia. (2006). Connected by the Sea (Blue, L., Hocker, F., and Eglert, A., eds). \"Roman techinques for the transport and conservation of fish: the case of the Fiumicino 5 wreck\". (pp. 123-129). Oxbow Books.",
+        "Photo": "https://www.ostiaantica.beniculturali.it/ups/2022/01/24/4-img002565.jpg",
+        "Key": "center well for fresh eels and lake fish"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          12.25178551,
+          41.80364331
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "eventName": "Grado shipwreck",
+        "location": "Grado, Italy",
+        "Lecture": "Age of Big Business: Roman Empire",
+        "Link": "https://www.turismofvg.it/religious-monuments/basilica-and-bell-tower-of-aquileia",
+        "Alt": "",
+        "Reading": "Beltrame, Carlo, Gaddi, Dario, and Parizzi, Simone. (2011). \"A Presumed Hydraullic Apparatus for the Transport of Live Fish, Found on the Roman Wreck at Grado, Italy\". The Internaiontal Journal of Nautical Archaeology, 40(2): 274-282. Blackwell Publishing. ",
+        "Photo": "https://cdn.mos.cms.futurecdn.net/BSh9bNVFSfPJZ5hxCCh3o4-970-80.jpg",
+        "Key": "live fish basin on deck; Pb pipes and flange through hull"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.32021627,
+          45.6132791
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "eventName": "La Giraglia shipwreck",
+        "location": "Ersa, France",
+        "Lecture": "Age of Big Business: Roman Empire",
+        "Link": "",
+        "Alt": "https://archeologie.culture.gouv.fr/archeo-sous-marine/en/ouest-giraglia-2-haute-corse",
+        "Reading": "Heslin, Karen. (2011). Maritime Archaeology and Ancient Trade in the Mediterranean (Damian Robinson and Andrew Wilson, Ed.). \"Dolia Shipwrecks and the wine trade in the Roman Mediterranean\" (pp. 157-168). Oxford Centre for Maritime Archaeology.",
+        "Photo": "https://archeologie.culture.gouv.fr/sites/archeologie/files/styles/deepzoom_poi_slider/public/upload/mediatheque/originales/images/ouest-gir_dsc_8632.jpg?itok=UUdnraUA",
+        "Key": "ship with 12 Minturnae dolia of wine; circular trade Rome <> Spain"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.402672637,
+          43.02455441
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "eventName": "Miturnae",
+        "location": "Minturno, Italy",
+        "Lecture": "Age of Big Business: Roman Empire",
+        "Link": "",
+        "Alt": "https://followinghadrian.com/2014/08/28/exploring-minturnae-a-forgotten-ancient-city-on-the-appian-way/",
+        "Reading": "Heslin, Karen. (2011). Maritime Archaeology and Ancient Trade in the Mediterranean (Damian Robinson and Andrew Wilson, Ed.). \"Dolia Shipwrecks and the wine trade in the Roman Mediterranean\" (pp. 157-168). Oxford Centre for Maritime Archaeology.",
+        "Photo": "https://static.cambridge.org/binary/version/id/urn:cambridge.org:id:binary:20230331100914250-0873:S1047759421000726:S1047759421000726_fig11.png?pub-status=live",
+        "Key": "Piranus family et al.: specialized ships for wine dolias of c.2 ton  "
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.77115947,
+          41.24516787
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "eventName": "Kizilburun Column Wreck",
+        "location": "Cesme, Turkiye",
+        "Lecture": "Age of Big Business: Roman Empire",
+        "Link": "https://nauticalarch.org/projects/kizilburun-column-wreck-excavation/",
+        "Alt": "",
+        "Reading": "Beltrame, Carlo, Lazzarini, Lorenzo, and Parizzi, Simone. (2016). \"The Roman ship 'Punta Scifo D' and Its Marble Cargo (Crotone, Italy)\". Oxford Journal of Archaeology, 35(3): 295-326. John Wiley & Sons.",
+        "Photo": "https://nauticalarch.org/wp-content/uploads/2015/07/kiz2_32.jpg",
+        "Key": "8 column drums, Doric capital: Proconnesos > Temple of Apollo, Claros"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          26.24257073,
+          38.26092688
+        ]
+      }
+    }
+  ]
+}];
+
+L.geoJSON(someFeatures, {
+    onEachFeature: addMyData, 
+}).addTo(map);
+
+
+function addMyData( feature, layer ){
+	if (feature.properties.Lecture == "Ages at sea: Introductory"){
+		IntroAge.addLayer(layer) 
+		 if (feature.properties.Link === "") {
+        	layer.bindPopup('<b><font size = "4">' + feature.properties.eventName + '</font></b><br><i>' + feature.properties.Lecture + '</i><br><a href = "' + feature.properties.Alt + '"> Alternative Resource </a><br><u>' + 'Lecture Reading: ' + '</u><br>' + feature.properties.Reading + '<br><br>' +'<a href="' + feature.properties.Photo + '" target="_blank"><img src="' + feature.properties.Photo + '" width="90" hieght="90"></a>' + '<br><font size = "2">(Click for full size)' + '<br><br>' + feature.properties.Key);   
+    } else {
+    		layer.bindPopup('<b><font size = "4">' + feature.properties.eventName + '</font></b><br><i>' + feature.properties.Lecture + '</i><br><a href = "' + feature.properties.Link + '"> Lecture Resource </a><br><u>' + 'Lecture Reading: ' + '</u><br>' + feature.properties.Reading + '<br><br>' +'<a href="' + feature.properties.Photo + '" target="_blank"><img src="' + feature.properties.Photo + '" width="90" hieght="90"></a>' + '<br><font size = "2">(Click for full size)'+ '<br><br>' + feature.properties.Key);	
+ 		} 
+	} 
+	else if (feature.properties.Lecture == "Ages of Discovery: History of the Discipline") {
+		DiscovAge.addLayer(layer)
+		if (feature.properties.Link === "") {
+        	layer.bindPopup('<b><font size = "4">' + feature.properties.eventName + '</font></b><br><i>' + feature.properties.Lecture + '</i><br><a href = "' + feature.properties.Alt + '"> Alternative Resource </a><br><u>' + 'Lecture Reading: ' + '</u><br>' + feature.properties.Reading + '<br><br>' +'<a href="' + feature.properties.Photo + '" target="_blank"><img src="' + feature.properties.Photo + '" width="90" hieght="90"></a>' + '<br><font size = "2">(Click for full size)' + '<br><br>' + feature.properties.Key);   
+    } else {
+    		layer.bindPopup('<b><font size = "4">' + feature.properties.eventName + '</font></b><br><i>' + feature.properties.Lecture + '</i><br><a href = "' + feature.properties.Link + '"> Lecture Resource </a><br><u>' + 'Lecture Reading: ' + '</u><br>' + feature.properties.Reading + '<br><br>' +'<a href="' + feature.properties.Photo + '" target="_blank"><img src="' + feature.properties.Photo + '" width="90" hieght="90"></a>' + '<br><font size = "2">(Click for full size)'+ '<br><br>' + feature.properties.Key);	
+ 		} 
+	}
+	else if (feature.properties.Lecture == "Age of Pharoahs: The Nile River & Red Sea") {
+		PharoAge.addLayer(layer)
+		 if (feature.properties.Link === "") {
+        	layer.bindPopup('<b><font size = "4">' + feature.properties.eventName + '</font></b><br><i>' + feature.properties.Lecture + '</i><br><a href = "' + feature.properties.Alt + '"> Alternative Resource </a><br><u>' + 'Lecture Reading: ' + '</u><br>' + feature.properties.Reading + '<br><br>' +'<a href="' + feature.properties.Photo + '" target="_blank"><img src="' + feature.properties.Photo + '" width="90" hieght="90"></a>' + '<br><font size = "2">(Click for full size)' + '<br><br>' + feature.properties.Key);   
+    } else {
+    		layer.bindPopup('<b><font size = "4">' + feature.properties.eventName + '</font></b><br><i>' + feature.properties.Lecture + '</i><br><a href = "' + feature.properties.Link + '"> Lecture Resource </a><br><u>' + 'Lecture Reading: ' + '</u><br>' + feature.properties.Reading + '<br><br>' +'<a href="' + feature.properties.Photo + '" target="_blank"><img src="' + feature.properties.Photo + '" width="90" hieght="90"></a>' + '<br><font size = "2">(Click for full size)'+ '<br><br>' + feature.properties.Key);	
+ 		} 	
+	}
+	
+	else if (feature.properties.Lecture == "Age of Heroes: Bronze Age Eastern Mediterraean"){
+		BronzeAge.addLayer(layer)
+		 if (feature.properties.Link === "") {
+        	layer.bindPopup('<b><font size = "4">' + feature.properties.eventName + '</font></b><br><i>' + feature.properties.Lecture + '</i><br><a href = "' + feature.properties.Alt + '"> Alternative Resource </a><br><u>' + 'Lecture Reading: ' + '</u><br>' + feature.properties.Reading + '<br><br>' +'<a href="' + feature.properties.Photo + '" target="_blank"><img src="' + feature.properties.Photo + '" width="90" hieght="90"></a>' + '<br><font size = "2">(Click for full size)' + '<br><br>' + feature.properties.Key);   
+    } else {
+    		layer.bindPopup('<b><font size = "4">' + feature.properties.eventName + '</font></b><br><i>' + feature.properties.Lecture + '</i><br><a href = "' + feature.properties.Link + '"> Lecture Resource </a><br><u>' + 'Lecture Reading: ' + '</u><br>' + feature.properties.Reading + '<br><br>' +'<a href="' + feature.properties.Photo + '" target="_blank"><img src="' + feature.properties.Photo + '" width="90" hieght="90"></a>' + '<br><font size = "2">(Click for full size)'+ '<br><br>' + feature.properties.Key);	
+ 		} 		
+	} 
+	else if (feature.properties.Lecture == "Age of Exploration: Phoenicians"){
+		ExplorAge.addLayer(layer)	
+		 if (feature.properties.Link === "") {
+        	layer.bindPopup('<b><font size = "4">' + feature.properties.eventName + '</font></b><br><i>' + feature.properties.Lecture + '</i><br><a href = "' + feature.properties.Alt + '"> Alternative Resource </a><br><u>' + 'Lecture Reading: ' + '</u><br>' + feature.properties.Reading + '<br><br>' +'<a href="' + feature.properties.Photo + '" target="_blank"><img src="' + feature.properties.Photo + '" width="90" hieght="90"></a>' + '<br><font size = "2">(Click for full size)' + '<br><br>' + feature.properties.Key);   
+    } else {
+    		layer.bindPopup('<b><font size = "4">' + feature.properties.eventName + '</font></b><br><i>' + feature.properties.Lecture + '</i><br><a href = "' + feature.properties.Link + '"> Lecture Resource </a><br><u>' + 'Lecture Reading: ' + '</u><br>' + feature.properties.Reading + '<br><br>' +'<a href="' + feature.properties.Photo + '" target="_blank"><img src="' + feature.properties.Photo + '" width="90" hieght="90"></a>' + '<br><font size = "2">(Click for full size)'+ '<br><br>' + feature.properties.Key);	
+ 		} 
+	}
+	else if (feature.properties.Lecture == "The Golden Age: Classical Athens"){
+		GoldenAge.addLayer(layer)
+		 if (feature.properties.Link === "") {
+        	layer.bindPopup('<b><font size = "4">' + feature.properties.eventName + '</font></b><br><i>' + feature.properties.Lecture + '</i><br><a href = "' + feature.properties.Alt + '"> Alternative Resource </a><br><u>' + 'Lecture Reading: ' + '</u><br>' + feature.properties.Reading + '<br><br>' +'<a href="' + feature.properties.Photo + '" target="_blank"><img src="' + feature.properties.Photo + '" width="90" hieght="90"></a>' + '<br><font size = "2">(Click for full size)' + '<br><br>' + feature.properties.Key);   
+    } else {
+    		layer.bindPopup('<b><font size = "4">' + feature.properties.eventName + '</font></b><br><i>' + feature.properties.Lecture + '</i><br><a href = "' + feature.properties.Link + '"> Lecture Resource </a><br><u>' + 'Lecture Reading: ' + '</u><br>' + feature.properties.Reading + '<br><br>' +'<a href="' + feature.properties.Photo + '" target="_blank"><img src="' + feature.properties.Photo + '" width="90" hieght="90"></a>' + '<br><font size = "2">(Click for full size)'+ '<br><br>' + feature.properties.Key);	
+ 		} 
+	}
+	else if (feature.properties.Lecture == "Age of Extravaganza: Hellenistic Era"){
+		HellAge.addLayer(layer)
+		 if (feature.properties.Link === "") {
+        	layer.bindPopup('<b><font size = "4">' + feature.properties.eventName + '</font></b><br><i>' + feature.properties.Lecture + '</i><br><a href = "' + feature.properties.Alt + '"> Alternative Resource </a><br><u>' + 'Lecture Reading: ' + '</u><br>' + feature.properties.Reading + '<br><br>' +'<a href="' + feature.properties.Photo + '" target="_blank"><img src="' + feature.properties.Photo + '" width="90" hieght="90"></a>' + '<br><font size = "2">(Click for full size)' + '<br><br>' + feature.properties.Key);   
+    } else {
+    		layer.bindPopup('<b><font size = "4">' + feature.properties.eventName + '</font></b><br><i>' + feature.properties.Lecture + '</i><br><a href = "' + feature.properties.Link + '"> Lecture Resource </a><br><u>' + 'Lecture Reading: ' + '</u><br>' + feature.properties.Reading + '<br><br>' +'<a href="' + feature.properties.Photo + '" target="_blank"><img src="' + feature.properties.Photo + '" width="90" hieght="90"></a>' + '<br><font size = "2">(Click for full size)'+ '<br><br>' + feature.properties.Key);	
+ 		} 	
+	}
+	else if (feature.properties.Lecture == "Coming of Age: Rome Becomes a/the Sea Power"){
+		ComingofAge.addLayer(layer)
+		if (feature.properties.Link === "") { layer.bindPopup('<b><font size = "4">' + feature.properties.eventName + '</font></b><br><i>' + feature.properties.Lecture + '</i><br><a href = "' + feature.properties.Alt + '"> Alternative Resource </a><br><u>' + 'Lecture Reading: ' + '</u><br>' + feature.properties.Reading + '<br><br>' +'<a href="' + feature.properties.Photo + '" target="_blank"><img src="' + feature.properties.Photo + '" width="90" hieght="90"></a>' + '<br><font size = "2">(Click for full size)' + '<br><br>' + feature.properties.Key);   
+    } else {
+    		layer.bindPopup('<b><font size = "4">' + feature.properties.eventName + '</font></b><br><i>' + feature.properties.Lecture + '</i><br><a href = "' + feature.properties.Link + '"> Lecture Resource </a><br><u>' + 'Lecture Reading: ' + '</u><br>' + feature.properties.Reading + '<br><br>' +'<a href="' + feature.properties.Photo + '" target="_blank"><img src="' + feature.properties.Photo + '" width="90" hieght="90"></a>' + '<br><font size = "2">(Click for full size)'+ '<br><br>' + feature.properties.Key);	
+ 		}
+ 	}
+ 	else {
+		RomAge.addLayer(layer) 	
+		if (feature.properties.Link === "") {
+		 layer.bindPopup('<b><font size = "4">' + feature.properties.eventName + '</font></b><br><i>' + feature.properties.Lecture + '</i><br><a href = "' + feature.properties.Alt + '"> Alternative Resource </a><br><u>' + 'Lecture Reading: ' + '</u><br>' + feature.properties.Reading + '<br><br>' +'<a href="' + feature.properties.Photo + '" target="_blank"><img src="' + feature.properties.Photo + '" width="90" hieght="90"></a>' + '<br><font size = "2">(Click for full size)' + '<br><br>' + feature.properties.Key);   
+   }  else {
+    		layer.bindPopup('<b><font size = "4">' + feature.properties.eventName + '</font></b><br><i>' + feature.properties.Lecture + '</i><br><a href = "' + feature.properties.Link + '"> Lecture Resource </a><br><u>' + 'Lecture Reading: ' + '</u><br>' + feature.properties.Reading + '<br><br>' +'<a href="' + feature.properties.Photo + '" target="_blank"><img src="' + feature.properties.Photo + '" width="90" hieght="90"></a>' + '<br><font size = "2">(Click for full size)'+ '<br><br>' + feature.properties.Key);	
+ 		}
+ 	} 	
+}
+
+let layerControl = {
+	"Ages at sea: Introductory": IntroAge,
+	"Ages of Discovery: History of the Discipline": DiscovAge, 
+	"Age of Pharoahs: The Nile River & Red Sea": PharoAge,
+	"Age of Heroes: Bronze Age Eastern Mediterraean": BronzeAge,
+	"Age of Exploration: Phoenicians": ExplorAge,
+	"The Golden Age: Classical Athens": GoldenAge,
+	"Age of Extravaganza: Hellenistic Era": HellAge,
+	"Coming of Age: Rome Becomes a/the Sea Power": ComingofAge,
+	"Age of Big Business: Roman Empire": RomAge,
+}
+
+
+L.control.layers(null, layerControl).addTo( map )
+
+
+var shovel = L.icon({
+		iconUrl: 'https://static.wikia.nocookie.net/civilization/images/9/91/Sailing_%28Civ6%29.png/revision/latest/thumbnail/width/360/height/360?cb=20201028073924',
+		
+		iconSize: [90,90],
+		iconAnchor: [22,94],
+		popupAnchor: [-3,-80]
+});
+
+L.marker([43.784, 22.005], {icon: shovel}).addTo(map).bindPopup("<b><font size = '" + "4" +"'><center> Welcome to a CLAS-1309 Map!</b></font><br><br><font size = '" + "2" +"'> Each point represents a key event or place in classical seafaring. <br> Popups report the <u> lecture resource </u> and <u> reading</u>.<br> If the resource is not publically available, an alternative resource is provided.</center><br><br> Lectures toggled in the top right corner.").openPopup();
+
+
+</script>
+</body>
+</html>
