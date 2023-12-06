@@ -1957,11 +1957,11 @@ function addMyData( feature, layer ){
  	else{
 		EdgeAge.addLayer(layer) 	
 		if (feature.properties.Link === "") {
-		layer.bindPopup('<b><font size = "4">' + feature.properties.eventName + '</font></b><br><i>' + feature.properties.Lecture + '</i> - <font size = "2">' + feature.properties.Date + '<font size = "4"><br><br><a href = "' + feature.properties.Alt + '"> Alternative Resource </a><br><u>' + 'Lecture Reading: ' + '</u><br>' + feature.properties.Reading + '<br><br>' +'<a href="' + feature.properties.Photo + '" target="_blank"><img src="' + feature.properties.Photo + '" width="90" hieght="90"></a>' + '<br><font size = "2">(Click for full size)' + '<br><br>' + feature.properties.Key);		
+		layer.bindPopup('<b><font size = "4">' + feature.properties.eventName + '</font></b><br><font size = "2">' + feature.properties.Date + '<br><br><i>' + feature.properties.Lecture + '</i><br><a href = "' + feature.properties.Alt + '"> Alternative Resource </a><br><u>' + 'Lecture Reading: ' + '</u><br>' + feature.properties.Reading + '<br><br>' +'<a href="' + feature.properties.Photo + '" target="_blank"><img src="' + feature.properties.Photo + '" width="90" hieght="90"></a>' + '<br><font size = "2">(Click for full size)' + '<br><br>' + feature.properties.Key);		
 		layer.on('click', function(e){
  			map.setView([e.latlng.lat, e.latlng.lng], 8);})	   
    }  else {
-    		layer.bindPopup('<b><font size = "4">' + feature.properties.eventName + '</font></b><br><i>' + feature.properties.Lecture + '</i> - <font size = "2">' + feature.properties.Date + '<font size = "4"><br><br><a href = "' + feature.properties.Link + '"> Lecture Resource </a><br><u>' + 'Lecture Reading: ' + '</u><br>' + feature.properties.Reading + '<br><br>' +'<a href="' + feature.properties.Photo + '" target="_blank"><img src="' + feature.properties.Photo + '" width="90" hieght="90"></a>' + '<br><font size = "2">(Click for full size)'+ '<br><br>' + feature.properties.Key);	
+    		layer.bindPopup('<b><font size = "4">' + feature.properties.eventName + '</font></b><br><font size = "2">' + feature.properties.Date + '<br><br><i>' + feature.properties.Lecture + '</i><br><a href = "' + feature.properties.Link + '"> Lecture Resource </a><br><u>' + 'Lecture Reading: ' + '</u><br>' + feature.properties.Reading + '<br><br>' +'<a href="' + feature.properties.Photo + '" target="_blank"><img src="' + feature.properties.Photo + '" width="90" hieght="90"></a>' + '<br><font size = "2">(Click for full size)'+ '<br><br>' + feature.properties.Key);	
 			layer.on('click', function(e){
  			map.setView([e.latlng.lat, e.latlng.lng], 8);}) 		
  		}
